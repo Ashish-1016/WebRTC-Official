@@ -3,9 +3,9 @@ import { useNavigate } from "react-router-dom";
 
 function WebRTC() {
   const navigate = useNavigate();
+  const [roomId, setRooomId] = useState(null);
   const [createRoomblock, setCreateRoomBlock] = useState(true);
   const [enterRoomblock, setEnterRoomBlock] = useState(true);
-
 
   function handleCreateRoomHandler(e) {
     e.preventDefault();
@@ -20,7 +20,7 @@ function WebRTC() {
     e.preventDefault();
     //Create offer
 
-    navigate(`rooms/12345`);
+    navigate(`rooms/${roomId}`);
   }
   async function handleEnterRoom(e) {
     e.preventDefault();
@@ -39,7 +39,7 @@ function WebRTC() {
           onClick={handleCreateRoomHandler}
           className="bg-blue-600 h-10 max-w-lg rounded-md p-2 hover:bg-blue-900 transform duration-150 "
         >
-          Create a Room
+          {createRoomblock ? "Create Room!" : "Close"}
         </button>
         <form
           onSubmit={handleCreateRoom}
@@ -48,6 +48,8 @@ function WebRTC() {
           } flex flex-col`}
         >
           <input
+            value={roomId}
+            onChange={(e) => setRooomId(e.target.value)}
             placeholder="Create a Room ID"
             className={`bg-transparent rounded-md text-white border p-3  `}
           />
@@ -64,7 +66,7 @@ function WebRTC() {
           onClick={handleEnterRoomHandler}
           className="bg-green-700 h-10 max-w-lg rounded-md p-2 hover:bg-green-900 transform duration-150 "
         >
-          Enter a Room
+          {enterRoomblock ? "Enter Room!" : "Close"}
         </button>
         <form
           onSubmit={handleEnterRoom}
@@ -73,6 +75,8 @@ function WebRTC() {
           } flex flex-col`}
         >
           <input
+            value={roomId}
+            onChange={(e) => setRooomId(e.target.value)}
             placeholder="Enter a Room ID"
             className={`bg-transparent rounded-md text-white border p-3  `}
           />

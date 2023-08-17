@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 function RoomPage() {
   const { roomId } = useParams();
   const videoRefHost = useRef(null);
-  const videoRefPeer = useRef(null)
+  const videoRefPeer = useRef(null);
 
   useEffect(() => {
     navigator.mediaDevices
@@ -41,7 +41,7 @@ function RoomPage() {
         {/* Video 2 */}
         <div className="relative ">
           <video
-          ref={videoRefPeer}
+            ref={videoRefPeer}
             className="rounded-md border-[2.5px] border-green-800 h-72 w-96 mt-6 md:mx-3"
             autoPlay
             playsInline
